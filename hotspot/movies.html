@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   
+    <link rel="stylesheet" href="assets/css/style.css?printer=1.0betagc-7.2">
+    <title>Internet Hotspot - Movies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="assets/js/config.js"></script>
+   
+
+
+<style>*{margin: 0;padding: 0;box-sizing: border-box;}
+.movie-container{top:0;left: 0;width: 100%;height:100%;padding: 0}
+.col{display: flex}
+#movieList{width: 100%;height: 100%;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center}
+.top-rated{width: 30%;background: red;padding: 5px 10px;border-radius: 3px;font-weight: bold;text-align: center;text-shadow: 0 1px 3px #000;height: 36px;font-size: 11px;border: none;color: #fff}
+.movie-btn,.movie-title,.movieListTitle,.movie-desc,.tvshows,.no-results-message{background: 0;max-width: 420px;margin: auto;text-align: center;color: #fff}
+.movie-iframe{width: 100%;height: 100%; border-radius: 10px}
+#moviePlayer{width: 100%;height:auto;background: #222}
+.movieTime{margin-top: 10px;padding: 10px;background: 0;width: 100%}
+.movieListTitle{width: auto;text-align: center}
+.movie-title{width: auto;text-align: center}.movie-desc{width: auto;text-align: left}
+.r-status{width: 100%}
+.categories{width: auto;display: flex;flex-direction: row;justify-content: flex-start;align-items: center;gap: 10px;position:relative}
+
+
+#moviePlayer{height:200px; }
+#closePopupButton{margin-top: 5px;font-size: 15px;width: 60%}
+#movieList{justify-content: space-around}
+.categories{flex-direction: row;flex-wrap: wrap}
+.r-status{font-size: 14px}
+.movie-btn{width: 100%;border: 5px}
+.movie-img{width: 150px;height: 230px;border-radius: 10px;align-self: center}
+.btnContainer{display: flex;flex-direction: row;gap: 10px}
+.movieTitle{text-align: left;margin-top: 10px} .form-group {
+    border: 2px solid #576574;
+    padding: 10px;
+    border-radius: 10px
+}
+
+.btn-r-status {
+    
+    width: 49.5%;
+    font-size: 100%;
+    margin-top: 10px;        
+    height: 38px;
+    font-weight: 700;
+                      
+}
+    #searchBtn{
+    width: 90%;
+    padding: 5px;
+    height: 38px;
+    text-shadow:rgba(0,0,0,.3) 0 1px 2px;
+    letter-spacing:3px;text-transform:uppercase;font-weight:bolder;font-size:90%;margin:2.5px 0;border-radius:5px;border:none;transition:all .2s ease;box-shadow:rgba(0,0,0,.3) 0 1px 2px 0,rgba(0,0,0,.15) 0 2px 6px 2px;
+    
+}
+
+    .search-input{
+    margin-top: 10px;
+    border-radius: 3px;
+    height: 38px;
+    border: none;
+    color: #007bff;
+    text-align: center;
+    outline: 0;}
+
+    input[type="text"]{border:none;outline:none;background-color:#fff;width:90%;text-align:center;font-size:100%;border-radius:5px;padding:5px}
+
+   .topratedBTN{
+    width: 29.9%;
+    padding: 5px;
+    height: 38px;
+    text-align: center;
+    text-shadow:rgba(0,0,0,.3) 0 1px 2px;text-transform:uppercase;font-weight:bolder;font-size:80%;margin:2.5px 0;border-radius:5px;border:none;transition:all .2s ease;box-shadow:rgba(0,0,0,.3) 0 1px 2px 0,rgba(0,0,0,.15) 0 2px 6px 2px;
+    
+}
+
+    .search{
+    border: solid 1px #0000ff;
+    border-radius: 5px;
+    padding-bottom: 5px;
+}
+.container {
+    padding: 0 20px 20px 20px;
+    max-width: 600px;
+    margin: auto;
+    margin-top:20px;
+}
+
+</style>
+
+    </head>
+    <body>
+
+       <div class="container">
+            <div class="content">
+            
+                    <div class="movie-container">
+                        <div id="moviePlayer"></div><br>
+                       <img style="width:50px;height: 50px; " src="movie.png"><div id="title" class="movie-title" ></div>
+                        <!--div id="movieDesc" class="movie-desc"></div-->
+                        
+                  <center>
+                    <div style="max-width:100%; height: auto; margin:auto"> 
+                        <button type="button"class="topratedBTN btn-primary" id="popular" style="margin-bottom: 5px;" >Popular</button>
+                        <button type="button"class="topratedBTN btn-primary" id="toprated" style="margin-bottom: 5px;">Trending</button>
+                        <button type="button"class="topratedBTN btn-primary" id="pnoy" style="margin-bottom: 5px;">Tagalog</button>
+                        <button type="button"class="topratedBTN btn-primary" id="server1" style="margin-bottom: 5px;">Server1</button>
+                        <button type="button"class="topratedBTN btn-primary" id="server2" style="margin-bottom: 5px;">Server2</button>
+                        <button type="button"class="topratedBTN btn-primary" id="server3" style="margin-bottom: 5px;">Server3</button>
+                    </div>
+                    </center>
+                       
+                        <br>
+                        
+                        <center class="search">
+                        
+                                <label><input class="search-input"  type="text" placeholder="Search title here..." id="search" /></label><br>
+
+                                <button type="button" id="searchBtn" class="btn-warning" srcset="">SEARCH
+        
+                                </button>
+                               
+                    
+                       </center>
+
+                         <div class="movieTime">
+                        
+                            
+                        <div id="movieList"></div>  
+                        <div class="movieListTitle" style="color:#fff; "> <b>Click Next to Select Movies:</b></div>
+                        </div>
+
+                        
+                        <div class="btnContainer">
+                            <button type="button" id="prevPage" class="btn-r-status btn btn-warning mar-top btn-sc">PREVIOUS</button>
+                            <button type="button" id="nextPage" class="btn-r-status btn btn-warning mar-top btn-sc">NEXT</button>
+                        </div>
+                   
+                           
+                        <button type="button" class="btn btn-danger" onclick='window.location.href="portal.html"'>WIFI STATUS</button>
+                          </div>
+    </div>
+                             
+        <footer class="main-footer">
+            <b>Powered by: <a id="link" href="#">PC Toolbox</a><br></b>© All Rights Reserved 2023<br>
+        </footer>
+
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/core.js"></script>
+        
+                   
+               
+        <script>
+            const api_key = "90f386e9f1e62b0ecf3095a21f7afdc6";
+            const imageBaseURL = "https://image.tmdb.org/t/p/";
+            const nextPage = document.getElementById("nextPage");
+            const prevPage = document.getElementById("prevPage");
+            let ismovie = true;
+            let nextpage = 1;
+            let apiurl = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&&include_adult=true&include_video=false&language=en-US&page=${nextpage}&sort_by=popularity.desc`;
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const movieContainer = document.getElementById("moviePlayer");
+                const movieListContainer = document.getElementById("movieList");
+
+                // Function to fetch data and update the movie list
+                function fetchData() {
+                    fetch(apiurl)
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            // Clear existing movie list
+                            movieListContainer.innerHTML = "";
+
+                            if (Array.isArray(data.results) && data.results.length > 0) {
+                                data.results.forEach((movie) => {
+                                    addMovieToContainer(movie);
+                                });
+                            } else {
+                                // Display a message indicating no results were found
+                                displayNoResultsMessage();
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error.message);
+                        });
+
+                   /* if (nextpage <= 1) {
+                        prevPage.style.display = "none";
+                    } else {
+                        prevPage.style.display = "block";
+                    } */
+                }
+
+                // Initial fetch when the page loads
+                fetchData();
+
+                function displayNoResultsMessage() {
+                    // Create a message element
+                    const noResultsMessage = document.createElement("p");
+                    noResultsMessage.className = "no-results-message";
+                    noResultsMessage.textContent = "No results found. Please try a different search.";
+
+                    // Append the message to the movie list container
+                    movieListContainer.appendChild(noResultsMessage);
+                }
+
+                // Fetches the cast information for a movie from the API and displays it on the page.
+
+                // Parameters:
+                // - movieId: The ID of the movie to retrieve the cast for. (number)
+                // - apiKey: The API key to authenticate the request. (string)
+
+                // Returns:
+                // - None
+
+                // Example usage:
+                // getMovieCast(123, "myAPIKey");
+                function getMovieCast(movieId, apiKey) {
+                    const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
+
+                    fetch(apiUrl)
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            const cast = data.cast || [];
+
+                            // Clear previous content
+                            casts.innerHTML = "";
+                            const mainCast = cast.filter((member) => member.order <= 6); // Adjust the threshold as needed
+                            // Append cast information to the HTML element
+                            mainCast.forEach((member) => {
+                                const castItem = document.createElement("li");
+                                castItem.className = "cast-item";
+                                castItem.innerHTML = `<strong> ${member.name}</strong> as ${member.character}; `;
+                                casts.appendChild(castItem);
+                            });
+                            // Display the "tvshows" container only if there is cast information
+                            if (mainCast.length > 0) {
+                                tvShowsContainer.style.display = "flex";
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching movie cast:", error);
+                        });
+                }
+
+                function fetchAndSaveMovieData(movieId, apiKey) {
+                    const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
+
+                    return fetch(apiUrl)
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then((movieData) => {
+                            saveMovieDataToLocalstorage(movieData);
+                            return movieData;
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching and saving movie data:", error.message);
+                        });
+                }
+
+                function saveMovieDataToLocalstorage(movieData) {
+                    // Convert the data to a JSON string and store it in local storage
+                    localStorage.setItem("selectedMovieData", JSON.stringify(movieData));
+                }
+
+                // // Example usage:
+                // const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+                // const movieIdToFetch = 385687; // Replace with the actual movie ID
+                // fetchAndSaveMovieData(movieIdToFetch, apiKey).then((movieData) => {
+                //     console.log("Movie Data:", movieData);
+                //     // The movie data is already saved in local storage
+                // });
+
+                function getMovieDataFromLocalStorage() {
+                    // Retrieve the JSON string from local storage
+                    const storedMovieData = localStorage.getItem("selectedMovieData");
+
+                    // Parse the JSON string to get the actual movie data
+                    return JSON.parse(storedMovieData);
+                }
+
+                // Example usage:
+                const retrievedMovieData = getMovieDataFromLocalStorage();
+
+                // Check if there is stored data
+                if (retrievedMovieData) {
+                    console.log("Retrieved Movie Data:", retrievedMovieData);
+                } else {
+                    console.log("No movie data found in local storage.");
+                }
+
+                function addMovieToContainer(movie) {
+                    // ... (your existing addMovieToContainer function remains unchanged)
+
+                    const movieElement = document.createElement("iframe");
+                    movieElement.src = "https://vidsrc.me/embed/movie?tmdb=" + movie.id;
+                    movieElement.className = "movie-iframe";
+                    movieElement.setAttribute("allowfullscreen", "true"); // Allow full screen
+
+                    movieContainer.innerHTML = "";
+                    movieContainer.appendChild(movieElement);
+
+                    document.getElementById(
+                        "title"
+                    ).innerHTML = `<p><strong>Movie Title: </strong> <i> ${movie.title}</i> </p>`;
+                    document.getElementById(
+                        "movieDesc"
+                    ).innerHTML = `<p style=" font-style: italic; margin-top:10px; line-height: 1.5"> <strong> Movie Overview: </strong>  ${movie.overview}</p>`;
+
+                    const movieListItem = document.createElement("div");
+                    // movieListItem.textContent = movie.title;
+                    movieListItem.className = "movie-btn";
+                    movieListItem.addEventListener("click", function () {
+                        saveMovieIdToLocalstorage(movie.id);
+                        playMovie(movie.id, movie.title, movie.overview);
+                        getMovieCast(movie.id, api_key);
+                        fetchAndSaveMovieData(movie.id, api_key);
+                    });
+
+                    const movieDetails = getMovieDataFromLocalStorage();
+
+                    const label = document.createElement("div");
+                    label.className = "labels";
+
+                    const movieImg = document.createElement("img");
+                    movieImg.src = `${imageBaseURL}/w342${movie.poster_path}`;
+                    movieImg.alt = movie.title;
+                    movieImg.className = "movie-img";
+                    movieListItem.appendChild(movieImg);
+
+                    const movieTitle = document.createElement("h4");
+                    movieTitle.textContent = movie.title;
+                    movieTitle.className = "movieTitle";
+                    label.appendChild(movieTitle);
+
+                    const movieYear = document.createElement("p");
+                    movieYear.textContent = `Release: ${movie.release_date}`;
+                    movieYear.className = "movieYear";
+                    label.appendChild(movieYear);
+
+                    const movieRating = document.createElement("p");
+                    movieRating.textContent = `Rating: ${movie.vote_average}/10`;
+                    movieRating.className = "movieRating";
+                    label.appendChild(movieRating);
+
+                    const popularity = document.createElement("p");
+                    popularity.textContent = `Popularity: ${movie.popularity}`;
+                    popularity.className = "popularity";
+                    label.appendChild(popularity);
+
+                    const runTime = document.createElement("p");
+                    runTime.textContent = `Runtime: ${movieDetails.runtime} mins.`;
+                    runTime.className = "runTime";
+                    label.appendChild(runTime);
+
+                    movieListItem.appendChild(label);
+
+                    movieListContainer.appendChild(movieListItem);
+                }
+
+                function playMovie(imdb_id, title, movieDesc) {
+                    const movieDetails = getMovieDataFromLocalStorage();
+                    // ... (your existing playMovie function remains unchanged)
+                    const iframeSrc = "https://vidsrc.to/embed/movie/" + imdb_id;
+                    movieContainer.innerHTML = "";
+                    const movieIframe = document.createElement("iframe");
+                    movieIframe.src = iframeSrc;
+                    movieIframe.className = "movie-iframe";
+                    movieIframe.setAttribute("allowfullscreen", "true"); // Allow full screen
+                    movieContainer.appendChild(movieIframe);
+                    document.getElementById(
+                        "title"
+                    ).innerHTML = `<p><strong>Movie Title: </strong>   <i>${title}</i> - <strong>Runtime: ${movieDetails.runtime} mins.</strong><p/>`;
+                    document.getElementById(
+                        "movieDesc"
+                    ).innerHTML = `<p style=" font-style: italic;line-height: 1.5"> <strong> Movie Overview: </strong>  ${movieDesc}</p>`;
+                    // Scroll to the top of the page
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth", // You can use "auto" instead of "smooth" for an instant scroll
+                    });
+                }
+
+                function saveMovieIdToLocalstorage(movieId) {
+                    localStorage.setItem("selectedMovieId", movieId);
+                }
+
+                function getSavedMovieId() {
+                    return localStorage.getItem("selectedMovieId");
+                }
+
+                getSavedMovieId();
+
+                nextPage.addEventListener("click", function () {
+                    // Increment the value of nextpage
+                    nextpage++;
+                    apiurl = apiurl.replace(/page=\d+/, `page=${nextpage}`);
+
+                    // Fetch new data and update the displayed items
+                    fetchData();
+                });
+
+                prevPage.addEventListener("click", function () {
+                    // Decrement the value of nextpage
+                    nextpage = Math.max(1, nextpage - 1);
+
+                    apiurl = apiurl.replace(/page=\d+/, `page=${nextpage}`);
+
+                    fetchData();
+                });
+
+                const toprated = document.getElementById("toprated");
+                const popular = document.getElementById("popular");
+                const pnoy = document.getElementById("pnoy");
+
+                toprated.addEventListener("click", function () {
+                    nextpage = 1;
+                    // apiurl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&page=${nextpage}&language=en-US&sort_by=popularity.desc`;
+                    apiurl = `https://api.themoviedb.org/3/trending/movie/week?api_key=${api_key}&page=${nextpage}&language=en-US&sort_by=popularity.desc`;
+                    // Log the updated value to the console (you can remove this line in your actual code)
+
+                    // Fetch new data and update the displayed items
+                    fetchData();
+                });
+
+                popular.addEventListener("click", function () {
+                    nextpage = 1;
+                    apiurl = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&&include_adult=false&include_video=false&language=en-US&page=${nextpage}&sort_by=popularity.desc&year=2023`;
+                    fetchData();
+                });
+
+                pnoy.addEventListener("click", function () {
+                    nextpage = 1;
+                    apiurl = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&&include_adult=true&include_video=false&language=en-US&page=${nextpage}&with_original_language=tl`;
+                    fetchData();
+                });
+
+                searchBtn.addEventListener("click", function () {
+                    nextpage = 1;
+                    apiurl = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search.value}&page=${nextpage}&include_adult=false`;
+                    fetchData();
+                    search.value = "";
+                });
+
+                // play in server 1
+                server1.addEventListener("click", function () {
+                    const imdb_id = getSavedMovieId();
+                    const iframeSrc = "https://vidsrc.me/embed/movie?tmdb=" + imdb_id;
+                    movieContainer.innerHTML = "";
+                    const movieIframe = document.createElement("iframe");
+                    movieIframe.src = iframeSrc;
+                    movieIframe.className = "movie-iframe";
+                    movieIframe.setAttribute("allowfullscreen", "true"); // Allow full screen
+                    movieContainer.appendChild(movieIframe);
+                });
+
+                server2.addEventListener("click", function () {
+                    const imdb_id = getSavedMovieId();
+                    const iframeSrc = "https://vivamax.asia/embed/" + imdb_id;
+                    movieContainer.innerHTML = "";
+                    const movieIframe = document.createElement("iframe");
+                    movieIframe.src = iframeSrc;
+                    movieIframe.className = "movie-iframe";
+                    movieIframe.setAttribute("allowfullscreen", "true"); // Allow full screen
+                    movieContainer.appendChild(movieIframe);
+                });
+
+                server3.addEventListener("click", function () {
+                    const imdb_id = getSavedMovieId();
+                    const iframeSrc = "https://flixembed.com/video/" + imdb_id;
+                    movieContainer.innerHTML = "";
+                    const movieIframe = document.createElement("iframe");
+                    movieIframe.src = iframeSrc;
+                    movieIframe.className = "movie-iframe";
+                    movieIframe.setAttribute("allowfullscreen", "true"); // Allow full screen
+                    movieContainer.appendChild(movieIframe);
+                });
+            });
+        </script>
+    </body>
+</html>

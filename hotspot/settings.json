@@ -1,0 +1,60 @@
+{
+    "Settings" : {
+        "vendo_option"          :   0,
+        "username_only"         :   true,
+        "currency"              :   "₱",
+        "footer_text"           :   "PC Toolbox",
+        "footer_link"           :   "https://www.facebook.com/pctoolbox",
+        "voucher_input"         :   true,
+        "pause_button"          :   true,
+        "member_logout_button"  :   true,
+        "trial_logout_button"   :   true,
+        "subscription"          :   false,
+        "custom_theme"          :   false,
+        "internet_status"       :   true,
+        "gcash_payment"         :   false
+    },
+
+    "subscription_prefix" : ["ME", "Vc", "MO", "Ec"],
+
+    "custom_theme" :{
+        "background" :  "#282828",
+        "container"  :  "white",
+        "color"      :  "red",
+        "textcolor"  :  ""
+    },
+
+    "no_internet_settings" : {
+        "insertcoin"               :    false,
+        "auto_pause"               :    false,
+        "internet_status_tittle"   :    "No Internet",
+        "internet_status_text"     :    "Some actions aren't available OFFLINE. Please contact the vendo owner."
+    },
+
+    "gcash_payment" :{
+        "payment_gateway":"https://payments.wifree.network/xendit/production/purchase_voucher.php",
+        "portal_key" :  "9e8655d2-99b9-11ee-a98e-760acff0468a"
+    },
+
+    "VendoAddresses" : [
+        {
+            "ssid"            :   "PisoWiFi",
+            "vendoName"       :   "JuanFiVendo",
+            "vendoIp"         :   "10.0.0.8",
+            "interfaceName"   :   "bridge-hotspot"
+        },
+        {
+            "ssid"            :   "PisoWiFi",
+            "vendoName"       :   "JuanFiVendo1",
+            "vendoIp"         :   "11.0.0.8",
+            "interfaceName"   :   "vlan11"
+        },
+        {
+            "ssid"            :   "PisoWiFi",
+            "vendoName"       :   "JuanFiVendo2",
+            "vendoIp"         :   "12.0.0.8",
+            "interfaceName"   :   "vlan12"
+        }
+        
+    ]
+}
